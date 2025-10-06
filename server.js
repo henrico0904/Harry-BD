@@ -8,13 +8,11 @@ dotenv.config();
 const serverPort = process.env.PORT || 3001;
 
 app.get("/", (req, res) => {
-    res.send("🚀 Servidor funcionando...");
+  res.send("🚀 Servidor funcionando...");
 });
-
 
 // Aqui vão todas suas Rotas
 
-
 app.listen(serverPort, () => {
-    console.log(`🚀 Servidor rodando em http://localhost:${serverPort} 🚀`);
+  console.log(`🚀 Servidor rodando em http://localhost:${serverPort} 🚀`);
 });
