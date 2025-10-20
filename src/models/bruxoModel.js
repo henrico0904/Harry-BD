@@ -12,3 +12,10 @@ export const findAll = async() => {
         orderBy: { nome: 'asc' }
     })
 }
+
+//crio a variavel findbyid e ja exporto
+export const findById = async (id) => {
+    return await prisma.bruxo.findUnique({
+        where: { id: Number(id)}
+    })
+}
