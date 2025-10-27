@@ -5,8 +5,11 @@ const router = Router();
 
 //rota getAll em /
 router.get("/", BruxoController.listarTodos);
-//rotaGetGyID
+//rota GetGyID
 router.get("/:id", BruxoController.listarUm)
+//rota create
+router.post("/", BruxoController.criar)
+
 
 
 
