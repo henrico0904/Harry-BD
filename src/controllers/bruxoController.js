@@ -96,3 +96,31 @@ export const criar = async(req,res) => {
         })
     }
 }
+
+export const apagar = async (req, res) => {
+    try {
+        const id = parseInt(req.params.id)
+
+        const bruxoExiste = await BruxoModel.findById(id)
+
+        if(!bruxoExiste){
+            return res.status(404).json({
+                erro: 'Bruxo não encontrado com esse Id',
+                id: id
+            })
+        }
+
+        await BruxoModel.deleteBruxo(id)
+
+        res.status(200).json({
+            mensagem: 'Bruxo removido com sucesso',
+            bruxoRemovido: bruxoExiste
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            erro: 'Erro ao apagar o bruxo',
+            detahes: error.message
+        })
+    }
+}

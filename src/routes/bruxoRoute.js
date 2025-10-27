@@ -9,6 +9,8 @@ router.get("/", BruxoController.listarTodos);
 router.get("/:id", BruxoController.listarUm)
 //rota create
 router.post("/", BruxoController.criar)
+//rota delete
+router.delete("/:id", BruxoController.apagar)
 
 
 
