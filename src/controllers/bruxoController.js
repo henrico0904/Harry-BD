@@ -124,3 +124,43 @@ export const apagar = async (req, res) => {
         })
     }
 }
+
+export const atualizar = async (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+        const dados = req.body;
+
+        const bruxoExiste = await BruxoModel.findById(id);
+
+        if (!bruxoExiste) {
+            return res.status(404).json({
+                erro: 'Bruxo não encontrado com esse id',
+                id: id
+            })
+        }
+
+        if (dados.casa) {
+            const casasValidas = ['Grifinória', 'Sonserina', 'Corvinal', 'Lufa-Lufa'];
+            if (!casasValidas.includes(dados.casa)) {
+                return res.status(400).json({
+                    erro: 'Casa inválida!',
+                    casasValidas
+                })
+            }
+        }
+
+        
+        const bruxoAtualizado = await BruxoModel.update(id, dados);
+
+        res.status(200).json({
+            mensagem: 'Bruxo atualizado com sucesso',
+            bruxo: bruxoAtualizado
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            erro: 'Erro ao atualizar bruxos',
+            detalhes: error.message
+        })
+    }
+}
